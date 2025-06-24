@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Pi Approximation - Leibniz Formula</title>
-    <link rel='stylesheet' href='style.css' />
+  <meta charset="UTF-8">
+  <title>Pi Approximation - Nilakantha Series</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Leibniz Pi Calculator</h1>
-    <p>Enter the number of terms:</p>
-    <input type="number" id="terms" value="1000" min="1">
-    <button onclick="calculatePi()">Calculate Pi</button>
-    <div id="result"></div>
+  <h1>Nilakantha Pi Calculator</h1>
+  <p>Enter the number of terms:</p>
+  <input type="number" id="terms" value="1000" min="1">
+  <button onclick="calculatePi()">Calculate Pi</button>
+  <div id="result"></div>
 
-    <script>
-        function calculatePi() {
-            const numTerms = parseInt(document.getElementById("terms").value);
-            let pi = 0;
+  <script>
+    function calculatePi() {
+      const numTerms = parseInt(document.getElementById("terms").value);
+      let pi = 3;
+      let sign = 1;
 
-            for (let i = 0; i < numTerms; i++) {
-                const term = 4 / (2 * i + 1);
-                pi += (i % 2 === 0) ? term : -term;
-            }
+      for (let i = 2, count = 0; count < numTerms; i += 2, count++) {
+        pi += sign * (4 / (i * (i + 1) * (i + 2)));
+        sign *= -1;
+      }
 
-            document.getElementById("result").innerHTML =
-                `Approximation of π with ${numTerms} terms: <strong>${pi}</strong>`;
-        }
-    </script>
+      document.getElementById("result").innerHTML =
+        "Approximation of π with " + numTerms + " terms: " + pi;
+    }
+  </script>
 </body>
 </html>
