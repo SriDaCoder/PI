@@ -7,14 +7,22 @@
 </head>
 <body>
   <h1>Nilakantha Pi Calculator</h1>
-  <p>Enter the number of terms:</p>
+  
+  <p>Number of terms:</p>
   <input type="number" id="terms" value="1000" min="1">
+
+  <p>Decimal places:</p>
+  <input type="number" id="decimals" value="5" min="0">
+
+  <br><br>
   <button onclick="calculatePi()">Calculate Pi</button>
+  
   <div id="result"></div>
 
   <script>
     function calculatePi() {
       const numTerms = parseInt(document.getElementById("terms").value);
+      const decimals = parseInt(document.getElementById("decimals").value);
       let pi = 3;
       let sign = 1;
 
@@ -23,8 +31,10 @@
         sign *= -1;
       }
 
+      const roundedPi = pi.toFixed(decimals);
+
       document.getElementById("result").innerHTML =
-        "Approximation of π with " + numTerms + " terms: " + pi;
+        "Approximation of π with " + numTerms + " terms to " + decimals + " decimal places: <strong>" + roundedPi + "</strong>";
     }
   </script>
 </body>
